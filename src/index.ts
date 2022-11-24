@@ -1,3 +1,3 @@
-import { getResolver } from './resolver';
+import { getResolver } from './resolver.js';
 
-export { getResolver };
+export default { getResolver };

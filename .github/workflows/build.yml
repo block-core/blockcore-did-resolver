@@ -19,6 +19,11 @@ jobs:
     - uses: actions/checkout@master
       name: Checkout
 
+    - uses: actions/setup-node@v2
+      with:
+        node-version: 18
+        registry-url: 'https://registry.npmjs.org'
+
     - name: Variables
       run: |
         echo VERSION=$(npm run version --silent) >> $GITHUB_ENV
