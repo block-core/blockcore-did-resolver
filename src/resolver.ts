@@ -9,7 +9,7 @@ export class BlockcoreDidResolver {
 	private identityServiceDomain = 'https://id.blockcore.net';
 
 	async resolve(
-		did: string,
+		_did: string,
 		parsed: ParsedDID,
 		_resolver: Resolvable,
 		_options: DIDResolutionOptions,
