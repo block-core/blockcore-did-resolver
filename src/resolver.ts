@@ -14,11 +14,7 @@ export class BlockcoreDidResolver {
 		_resolver: Resolvable,
 		_options: DIDResolutionOptions,
 	): Promise<DIDResolutionResult> {
-		console.log('DID:', did);
-		console.log('Parsed:', parsed);
-
 		const fetchUrl = `${this.identityServiceDomain}/1.0/identifiers/did:is:${parsed.id}`;
-		console.log('Fetch URL:', fetchUrl);
 
 		const didResolutionResponse = await fetch(fetchUrl, {
 			method: 'GET',
@@ -46,7 +42,10 @@ export class BlockcoreDidResolver {
 			}
 
 			const randomServiceIndex = this.getRandomInt(services.length);
-			this.identityServiceDomain = services[randomServiceIndex]?.domain || this.identityServiceDomain;
+
+			if (services[randomServiceIndex]?.domain) {
+				this.identityServiceDomain = 'https://' + services[randomServiceIndex]?.domain;
+			}
 		});
 	}
 
