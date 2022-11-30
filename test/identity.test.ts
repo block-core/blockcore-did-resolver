@@ -38,3 +38,24 @@ test('Create the server and wait for resolve', async (t) => {
 	didResolution = await resolver.resolve('did:is:0f254e55a2633d468e92aa7dd5a76c0c9101fab8e282c8c20b3fefde0d68f217');
 	t.assert(didResolution.didDocument?.id == 'did:is:0f254e55a2633d468e92aa7dd5a76c0c9101fab8e282c8c20b3fefde0d68f217');
 });
+
+
+test('Create the server and resolve not founds', async (t) => {
+	const isResolver = is.getResolver();
+	t.assert(isResolver != null);
+
+	//If you are using one method you can simply pass the result of getResolver( into the constructor
+	const resolver = new Resolver(isResolver);
+	
+	let didResolution = await resolver.resolve('did:is:PHRcZvY4z86XxXey1VykYosy3BecdTDnUi');
+	t.assert(didResolution.didResolutionMetadata.error == 'notFound');
+
+	didResolution = await resolver.resolve('PHRcZvY4z86XxXey1VykYosy3BecdTDnUi');
+	t.assert(didResolution.didResolutionMetadata.error == 'invalidDid');
+
+	didResolution = await resolver.resolve('null');
+	t.assert(didResolution.didResolutionMetadata.error == 'invalidDid');
+
+	didResolution = await resolver.resolve('');
+	t.assert(didResolution.didResolutionMetadata.error == 'invalidDid');
+});
