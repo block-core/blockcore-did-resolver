@@ -43,7 +43,7 @@
   "author": "Blockcore",
   "license": "MIT",
   "dependencies": {
-    "@blockcore/dns": "^0.0.11",
+    "@blockcore/dns": "^0.0.12",
     "did-resolver": "^4.0.1"
   },
   "devDependencies": {
